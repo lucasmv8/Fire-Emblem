@@ -1,0 +1,46 @@
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.deps.json
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.dll
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.pdb
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.GeneratedMSBuildEditorConfig.editorconfig
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfoInputs.cache
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfo.cs
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.csproj.CoreCompileInputs.cache
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.dll
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\refint\Fire-Emblem-View.dll
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.pdb
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\ref\Fire-Emblem-View.dll
+D:\Diseño Detallado de Software\Proyecto\Entrega 1\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.sourcelink.json
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.deps.json
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfoInputs.cache
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfo.cs
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.sourcelink.json
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\refint\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\lucas\Desktop\8°Semestre\Diseño Detalaldo de Software\Proyecto\Fire-Emblem\Fire-Emblem-View\obj\Debug\net8.0\ref\Fire-Emblem-View.dll
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.deps.json
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfoInputs.cache
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfo.cs
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.csproj.CoreCompileInputs.cache
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\refint\Fire-Emblem-View.dll
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\benja\Desktop\Peta\Diseño\Proyecto\Fire-Emblem-master\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\ref\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.deps.json
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\bin\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfoInputs.cache
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.AssemblyInfo.cs
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\refint\Fire-Emblem-View.dll
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\Fire-Emblem-View.pdb
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem-View\obj\Debug\net8.0\ref\Fire-Emblem-View.dll
