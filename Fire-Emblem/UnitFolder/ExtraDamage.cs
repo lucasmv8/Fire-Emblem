@@ -8,11 +8,14 @@ public class ExtraDamage
     public int PenaltyNormalAttack { get; set; }
     public int PenaltyFollowUpAttack { get; set; }
     public int PenaltyFirstAttack { get; set; }
-    public float PercentageNormalAttack { get; set; }
-    public float PercentageFollowUpAttack { get; set; }
-    public float PercentageFirstAttack { get; set; }
+    public float PercentagePenaltyNormalAttack { get; set; }
+    public float PercentagePenaltyFollowUpAttack { get; set; }
+    public float PercentagePenaltyFirstAttack { get; set; }
+    public float PercentageBonusNormalAttack { get; set; }
+    public float PercentageBonusFollowUpAttack { get; set; }
+    public float PercentageBonusFirstAttack { get; set; }
 
-    public ExtraDamage(int normalAttack = 0, int followUpAttack = 0, int firstAttack = 0, int percentage = 1)
+    public ExtraDamage(int normalAttack = 0, int followUpAttack = 0, int firstAttack = 0, int percentagePenalty = 1)
     {
         BonusNormalAttack = normalAttack;
         BonusFollowUpAttack = followUpAttack;
@@ -20,9 +23,12 @@ public class ExtraDamage
         PenaltyNormalAttack = normalAttack;
         PenaltyFollowUpAttack = followUpAttack;
         PenaltyFirstAttack = firstAttack;
-        PercentageNormalAttack = percentage;
-        PercentageFollowUpAttack = percentage;
-        PercentageFirstAttack = percentage;
+        PercentagePenaltyNormalAttack = percentagePenalty;
+        PercentagePenaltyFollowUpAttack = percentagePenalty;
+        PercentagePenaltyFirstAttack = percentagePenalty;
+        PercentageBonusNormalAttack = percentagePenalty;
+        PercentageBonusFollowUpAttack = percentagePenalty;
+        PercentageBonusFirstAttack = percentagePenalty;
     }
     
     public void Reset()
@@ -33,8 +39,11 @@ public class ExtraDamage
         PenaltyNormalAttack = 0;
         PenaltyFollowUpAttack = 0;
         PenaltyFirstAttack = 0;
-        PercentageNormalAttack = 1;
-        PercentageFollowUpAttack = 1;
-        PercentageFirstAttack = 1;
+        PercentagePenaltyNormalAttack = 1;
+        PercentagePenaltyFollowUpAttack = 1;
+        PercentagePenaltyFirstAttack = 1;
+        PercentageBonusNormalAttack = 1;
+        PercentageBonusFollowUpAttack = 1;
+        PercentageBonusFirstAttack = 1;
     }
 }

@@ -78,14 +78,14 @@ public class EffectFactory
                 }
                 throw new ArgumentException("Invalid arguments for ExtraDamageEffect");
             }
-            case "PercentageDamageReductionEffect":
+            case "PercentageDamageEffect":
             {
-                if (args.Length == 3 && args[0] is float reductionPercentage && args[1] is AttackType attackType
-                    && args[2] is TargetType targetType)
+                if (args.Length == 4 && args[0] is float reductionPercentage && args[1] is AttackType attackType
+                    && args[2] is TargetType targetType && args[3] is EffectType effectType)
                 {
-                    return new PercentageDamageReductionEffect(reductionPercentage, attackType, targetType);
+                    return new PercentageDamageEffect(reductionPercentage, attackType, targetType, effectType);
                 }
-                throw new ArgumentException("Invalid arguments for PercentageDamageReductionEffect");
+                throw new ArgumentException("Invalid arguments for PercentageDamageEffect");
             }
             default:
                 throw new ArgumentException($"Unknown effect type: {effectCase}");

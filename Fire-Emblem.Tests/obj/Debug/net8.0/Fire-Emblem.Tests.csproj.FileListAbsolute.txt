@@ -428,3 +428,4 @@ C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-
 C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem.Tests\obj\Debug\net8.0\Fire-Emblem.Tests.pdb
 C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem.Tests\obj\Debug\net8.0\Fire-Emblem.Tests.genruntimeconfig.cache
 C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem.Tests\obj\Debug\net8.0\ref\Fire-Emblem.Tests.dll
+C:\Users\lucas\Desktop\8vo Semestre\Diseño Detallado de Software\Proyecto\Fire-Emblem-master\Fire-Emblem.Tests\obj\Debug\net8.0\Fire-Emblem.Tests.sourcelink.json

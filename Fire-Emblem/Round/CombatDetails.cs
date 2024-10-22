@@ -35,49 +35,107 @@ public class CombatDetails
         }
         return true;
     }
-    
+
     private double CalculateBaseDamage(Unit attacker, Unit defender)
     {
         double weaponTriangleBonus = CalculateWeaponAdvantage(attacker, defender);
-        double defense = IsPhysicalWeapon(attacker) ? defender.Def : defender.Res;
-        return Math.Max(0, (attacker.Atk * weaponTriangleBonus) - defense);
+        double defensiveStat = IsPhysicalWeapon(attacker) ? defender.Def : defender.Res;
+        return Math.Max(0, (attacker.Atk * weaponTriangleBonus) - defensiveStat);
+    }
+
+    private double CalculateExtraDamage(Unit attacker, Unit defender, AttackType attackType)
+    {
+        double attackerBonus = GetAttackerBonus(attacker, attackType);
+        double defenderPenalty = GetDefenderPenalty(defender, attackType);
+    
+        return attackerBonus - defenderPenalty;
     }
     
-    private double CalculateExtraDamage(Unit attacker, Unit defender, AttackType attackType)
+
+    private double GetAttackerBonus(Unit attacker, AttackType attackType)
     {
         return attackType switch
         {
-            AttackType.Normal => attacker.ExtraDamage.BonusNormalAttack - defender.ExtraDamage.PenaltyNormalAttack,
-            AttackType.FirstAttack => attacker.ExtraDamage.BonusFirstAttack + attacker.ExtraDamage.BonusNormalAttack 
-                                      - defender.ExtraDamage.PenaltyFirstAttack - defender.ExtraDamage.PenaltyNormalAttack,
-            AttackType.FollowUp => attacker.ExtraDamage.BonusFollowUpAttack + attacker.ExtraDamage.BonusNormalAttack 
-                                   - defender.ExtraDamage.PenaltyFollowUpAttack - defender.ExtraDamage.PenaltyNormalAttack,
+            AttackType.Normal => attacker.ExtraDamage.BonusNormalAttack,
+            AttackType.FirstAttack => attacker.ExtraDamage.BonusFirstAttack + attacker.ExtraDamage.BonusNormalAttack,
+            AttackType.FollowUp => attacker.ExtraDamage.BonusFollowUpAttack + attacker.ExtraDamage.BonusNormalAttack,
+            _ => 0
+        };
+    }
+
+    private double GetDefenderPenalty(Unit defender, AttackType attackType)
+    {
+        return attackType switch
+        {
+            AttackType.Normal => defender.ExtraDamage.PenaltyNormalAttack,
+            AttackType.FirstAttack => defender.ExtraDamage.PenaltyFirstAttack + defender.ExtraDamage.PenaltyNormalAttack,
+            AttackType.FollowUp => defender.ExtraDamage.PenaltyFollowUpAttack + defender.ExtraDamage.PenaltyNormalAttack,
             _ => 0
         };
     }
     
-    private double GetPercentageReduction(Unit attacker, AttackType attackType)
+    private double GetPercentageModification(Unit attacker, AttackType attackType)
+    {
+        double bonusPercentage = GetBonusPercentage(attacker, attackType);
+        double penaltyPercentage = GetPenaltyPercentage(attacker, attackType);
+
+        if (penaltyPercentage < 1.0)
+        {
+            Console.WriteLine("Se aplica penalty");
+            return penaltyPercentage;
+        }
+
+        if (bonusPercentage > 1.0)
+        {
+            Console.WriteLine("Se aplica bonus");
+            return bonusPercentage;
+        }
+
+        return 1.0;
+    }
+
+    private double GetBonusPercentage(Unit attacker, AttackType attackType)
     {
         return attackType switch
         {
-            AttackType.Normal => double.Min(attacker.ExtraDamage.PercentageNormalAttack, attacker.ExtraDamage.PercentageFirstAttack),
-            AttackType.FirstAttack => double.Min(attacker.ExtraDamage.PercentageNormalAttack, attacker.ExtraDamage.PercentageFirstAttack),
-            AttackType.FollowUp => attacker.ExtraDamage.PercentageFollowUpAttack,
-            _ => 1.0 // Si no se define el ataque, no hay reducción
+            AttackType.Normal => Math.Max(attacker.ExtraDamage.PercentageBonusNormalAttack, attacker.ExtraDamage.PercentageBonusFirstAttack),
+            AttackType.FirstAttack => Math.Max(attacker.ExtraDamage.PercentageBonusFirstAttack, attacker.ExtraDamage.PercentageBonusNormalAttack),
+            AttackType.FollowUp => attacker.ExtraDamage.PercentageBonusFollowUpAttack,
+            _ => 1.0
+        };
+    }
+
+    private double GetPenaltyPercentage(Unit attacker, AttackType attackType)
+    {
+        return attackType switch
+        {
+            AttackType.Normal => Math.Min(attacker.ExtraDamage.PercentagePenaltyNormalAttack, attacker.ExtraDamage.PercentagePenaltyFirstAttack),
+            AttackType.FirstAttack => Math.Min(attacker.ExtraDamage.PercentagePenaltyFirstAttack, attacker.ExtraDamage.PercentagePenaltyNormalAttack),
+            AttackType.FollowUp => attacker.ExtraDamage.PercentagePenaltyFollowUpAttack,
+            _ => 1.0
         };
     }
     
     public int CalculateDamageDependingOnWeapon(Unit attacker, Unit defender, AttackType attackType)
     {
         double baseDamage = CalculateBaseDamage(attacker, defender);
-    
+        Console.WriteLine($"baseDamage: {baseDamage}");
         double extraDamage = CalculateExtraDamage(attacker, defender, attackType);
-    
-        double totalDamage = baseDamage + extraDamage;
-    
-        double percentageReduction = GetPercentageReduction(attacker, attackType);
-        totalDamage *= percentageReduction;
+        Console.WriteLine($"extraDamage: {extraDamage}");
 
-        return Math.Max(0, (int)Math.Floor(totalDamage));
+        double totalDamage = baseDamage + extraDamage;
+        Console.WriteLine($"totalDamage: {totalDamage}");
+
+        double percentageModification = GetPercentageModification(attacker, attackType);
+
+        double finalDamage = ApplyPercentageModification(totalDamage, percentageModification);
+
+        return Math.Max(Convert.ToInt32(Math.Floor(finalDamage)), 0);
+    }
+
+    private double ApplyPercentageModification(double totalDamage, double percentageModification)
+    {
+        double modifiedDamage = totalDamage * percentageModification;
+        return Math.Round(modifiedDamage, 9);
     }
 }

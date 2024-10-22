@@ -754,8 +754,8 @@ public class SkillFactory
                 var opponentUsePhysicalWeaponCondition = _conditionFactory.CreateCondition("MultiConditionOr", unit,
                     new List<Condition> { opponentUseSword, opponentUseBow, opponentUseAxe, opponentUseLance });
                 skill.SetCondition(opponentUsePhysicalWeaponCondition);
-                var percentageDamageReductionEffect = _effectFactory.CreateEffect("PercentageDamageReductionEffect", 0.5f, AttackType.FirstAttack, TargetType.Opponent);
-                skill.SetEffect((percentageDamageReductionEffect));
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.5f, AttackType.FirstAttack, TargetType.Opponent, EffectType.Penalty);
+                skill.SetEffect((percentageDamageEffect));
                 _skillApplier.ApplySkillToUnit(skill, unit);
                 break;
             }
@@ -831,6 +831,33 @@ public class SkillFactory
                 _skillApplier.ApplySkillToUnit(skill, unit);
                 break;
             }
+            case "Back at You":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+                var unitExtraDamage = _effectFactory.CreateEffect("ExtraDamageEffect", (unit.MaxHP - unit.HP) / 2 , AttackType.Normal,
+                    TargetType.Self);
+                skill.SetEffect(unitExtraDamage);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Lunar Brace":
+            {
+                var unitUseSword = _conditionFactory.CreateCondition("TheUnitUseAnSpecificWeaponCondition", unit, WeaponType.Sword);
+                var unitUseBow = _conditionFactory.CreateCondition("TheUnitUseAnSpecificWeaponCondition", unit, WeaponType.Bow);
+                var unitUseAxe = _conditionFactory.CreateCondition("TheUnitUseAnSpecificWeaponCondition", unit, WeaponType.Axe);
+                var unitUseLance = _conditionFactory.CreateCondition("TheUnitUseAnSpecificWeaponCondition", unit, WeaponType.Lance);
+                var unitUsePhysicalWeaponCondition = _conditionFactory.CreateCondition("MultiConditionOr", unit,
+                    new List<Condition> { unitUseSword, unitUseBow, unitUseAxe, unitUseLance });
+                var unitStartCondition = _conditionFactory.CreateCondition("UnitStartTheCombatCondition", unit, _logs);
+                var multiConditionAnd = _conditionFactory.CreateCondition("MultiConditionAnd", unit, new List<Condition> { unitStartCondition, unitUsePhysicalWeaponCondition });
+                skill.SetCondition(multiConditionAnd);
+                var unitExtraDamage = _effectFactory.CreateEffect("ExtraDamageEffect", (int)(unit.CurrentOpponent.Def * 0.3), AttackType.Normal,
+                    TargetType.Self);
+                skill.SetEffect(unitExtraDamage);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
             case "Bravery":
             {
                 skill.SetCondition(_conditionFactory.CreateCondition("WithoutCondition", unit));
@@ -858,10 +885,247 @@ public class SkillFactory
                 skill.SetCondition(_conditionFactory.CreateCondition("WithoutCondition", unit));
                 var defBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Def, 6, TargetType.Self);
                 var resBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Res, 3, TargetType.Self);
-                var percentageDamageReductionEffect = _effectFactory.CreateEffect("PercentageDamageReductionEffect", 0.5f, AttackType.FirstAttack, TargetType.Opponent);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.5f, AttackType.FirstAttack, TargetType.Opponent, EffectType.Penalty);
                 var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
                 {
-                    defBonusEffect, resBonusEffect, percentageDamageReductionEffect
+                    defBonusEffect, resBonusEffect, percentageDamageEffect
+                });
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Remote Sparrow":
+            {
+                var unitStartCondition = _conditionFactory.CreateCondition("UnitStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(unitStartCondition);
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 7, TargetType.Self);
+                var spdBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Spd, 7, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.3f, AttackType.FirstAttack, TargetType.Opponent, EffectType.Penalty);
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, spdBonusEffect, percentageDamageEffect
+                });
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Remote Mirror":
+            {
+                var unitStartCondition = _conditionFactory.CreateCondition("UnitStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(unitStartCondition);
+    
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 7, TargetType.Self);
+                var resBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Res, 10, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.3f, AttackType.FirstAttack, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, resBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Remote Sturdy":
+            {
+                var unitStartCondition = _conditionFactory.CreateCondition("UnitStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(unitStartCondition);
+    
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 7, TargetType.Self);
+                var defBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Def, 10, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.3f, AttackType.FirstAttack, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, defBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Fierce Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 8, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, percentageDamageEffect
+                });
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Darting Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var spdBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Spd, 8, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    spdBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Steady Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var defBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Def, 8, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    defBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Warding Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var resBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Res, 8, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    resBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Kestrel Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 6, TargetType.Self);
+                var spdBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Spd, 6, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, spdBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Sturdy Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 6, TargetType.Self);
+                var defBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Def, 6, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, defBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Mirror Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var atkBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Atk, 6, TargetType.Self);
+                var resBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Res, 6, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    atkBonusEffect, resBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Steady Posture":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var spdBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Spd, 6, TargetType.Self);
+                var defBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Def, 6, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    spdBonusEffect, defBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Swift Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var spdBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Spd, 6, TargetType.Self);
+                var resBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Res, 6, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    spdBonusEffect, resBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Bracing Stance":
+            {
+                var opponentStartCombat = _conditionFactory.CreateCondition("TheOpponentStartTheCombatCondition", unit, _logs);
+                skill.SetCondition(opponentStartCombat);
+    
+                var defBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Def, 6, TargetType.Self);
+                var resBonusEffect = _effectFactory.CreateEffect("BonusEffect", StatType.Res, 6, TargetType.Self);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.1f, AttackType.FollowUp, TargetType.Opponent, EffectType.Penalty);
+    
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    defBonusEffect, resBonusEffect, percentageDamageEffect
+                });
+    
+                skill.SetEffect(multiEffect);
+                _skillApplier.ApplySkillToUnit(skill, unit);
+                break;
+            }
+            case "Poetic Justice": //Ajustar el calculo del bonus de ataque
+            {
+                skill.SetCondition(_conditionFactory.CreateCondition("WithoutCondition", unit));
+                var spdPenaltyEffect = _effectFactory.CreateEffect("PenaltyEffect", StatType.Spd, 4, TargetType.Opponent);
+                var percentageDamageEffect = _effectFactory.CreateEffect("PercentageDamageEffect", 0.15f, AttackType.Normal, TargetType.Opponent, EffectType.Bonus);
+                var multiEffect = _effectFactory.CreateEffect("MultiEffect", new List<Effect>
+                {
+                    spdPenaltyEffect, percentageDamageEffect
                 });
                 skill.SetEffect(multiEffect);
                 _skillApplier.ApplySkillToUnit(skill, unit);

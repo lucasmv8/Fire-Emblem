@@ -105,15 +105,15 @@ public class StatPrinter
     public void PrintDamageReduction(Unit unit)
     {
         Unit opponent = unit.CurrentOpponent;
-        PrintReductionForAttackType(unit, opponent.ExtraDamage.PercentageNormalAttack, "de los ataques del rival");
-        PrintReductionForAttackType(unit, opponent.ExtraDamage.PercentageFirstAttack, "del primer ataque del rival");
-        PrintReductionForAttackType(unit, opponent.ExtraDamage.PercentageFollowUpAttack, "del Follow-Up del rival");
+        PrintReductionForAttackType(unit, opponent.ExtraDamage.PercentagePenaltyNormalAttack, "de los ataques del rival");
+        PrintReductionForAttackType(unit, opponent.ExtraDamage.PercentagePenaltyFirstAttack, "del primer ataque del rival");
+        PrintReductionForAttackType(unit, opponent.ExtraDamage.PercentagePenaltyFollowUpAttack, "del Follow-Up del rival");
     }
     private void PrintReductionForAttackType(Unit unit, float reductionPercentage, string attackDescription)
     {
         if (reductionPercentage is > 0 and < 1)
         {
-            string formattedPercentage = (reductionPercentage * 100).ToString("0.##");
+            string formattedPercentage = ((1 - reductionPercentage) * 100).ToString("0.##");
             string message = $"{unit.Name} reducirá el daño {attackDescription} en un {formattedPercentage}%";
             _view.WriteLine(message);
         }
